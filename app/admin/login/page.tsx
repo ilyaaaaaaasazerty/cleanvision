@@ -1,0 +1,98 @@
+'use client';
+
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { supabase } from '@/lib/supabaseClient';
+import Link from 'next/link';
+
+export default function AdminLoginPage() {
+  const router = useRouter();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+
+    if (error) {
+      setError(error.message);
+      setLoading(false);
+    } else {
+      router.push('/admin');
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-[#080808] flex items-center justify-center px-6">
+      <div className="w-full max-w-sm">
+        {/* Logo */}
+        <div className="text-center mb-12">
+          <Link href="/" className="inline-flex items-center gap-3 mb-8">
+            <div className="w-8 h-8 relative">
+              <div className="absolute inset-0 bg-deep-teal rounded-full opacity-60" />
+              <div className="absolute inset-1 bg-ice-blue rounded-full opacity-40" />
+              <div className="absolute inset-2 bg-alabaster rounded-full" />
+            </div>
+            <span className="font-display text-xl font-light tracking-[0.15em] text-alabaster">
+              CLEAN<span className="text-ice-blue">VISION</span>
+            </span>
+          </Link>
+          <p className="font-mono text-xs tracking-[0.3em] text-alabaster/30 uppercase">Admin Access</p>
+        </div>
+
+        <form onSubmit={handleLogin} className="space-y-4">
+          <div>
+            <label className="font-mono text-[10px] tracking-widest uppercase text-alabaster/40 block mb-2">
+              Email
+            </label>
+            <input
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full bg-white/[0.03] border border-white/10 text-alabaster text-sm px-4 py-3 placeholder-alabaster/25 focus:outline-none focus:border-ice-blue/40 font-body"
+              placeholder="admin@cleanvision.dz"
+            />
+          </div>
+
+          <div>
+            <label className="font-mono text-[10px] tracking-widest uppercase text-alabaster/40 block mb-2">
+              Password
+            </label>
+            <input
+              type="password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full bg-white/[0.03] border border-white/10 text-alabaster text-sm px-4 py-3 placeholder-alabaster/25 focus:outline-none focus:border-ice-blue/40 font-body"
+              placeholder="••••••••"
+            />
+          </div>
+
+          {error && (
+            <p className="font-mono text-xs text-red-400/80 tracking-wider">{error}</p>
+          )}
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full py-3 bg-ice-blue text-obsidian font-mono text-xs tracking-widest uppercase hover:bg-deep-teal hover:text-alabaster transition-all duration-300 disabled:opacity-50 mt-2"
+          >
+            {loading ? 'Signing in...' : 'Sign In'}
+          </button>
+        </form>
+
+        <div className="mt-8 text-center">
+          <Link href="/" className="font-mono text-xs text-alabaster/20 hover:text-ice-blue transition-colors tracking-wider">
+            ← Back to website
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
