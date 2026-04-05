@@ -179,7 +179,7 @@ export default function ServicesSection({ services }: ServicesSectionProps) {
   );
 }
 
-function ServiceCard({ service, index }: { service: typeof FALLBACK_SERVICES[0]; index: number }) {
+function ServiceCard({ service, index }: { service: Service | typeof FALLBACK_SERVICES[0]; index: number }) {
   const cardRef = useRef<HTMLDivElement>(null);
 
   return (
