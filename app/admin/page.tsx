@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { getServices, getCategories, getBookings } from '@/lib/supabaseClient';
+import { getServices, getCategories, getBookings } from '@/lib/db';
 import Link from 'next/link';
 
 interface Stats { services: number; categories: number; bookings: number; pending: number }
@@ -87,7 +87,7 @@ export default function AdminDashboard() {
       {/* Info bar */}
       <div className="mt-10 p-4 border border-deep-teal/20 bg-deep-teal/5">
         <p className="font-mono text-xs text-ice-blue/60 tracking-wider">
-          💡 Configure your Supabase credentials in <code className="text-ice-blue">.env.local</code> to activate live data. See <code className="text-ice-blue">supabase-schema.sql</code> for the database setup.
+          💡 Configure your Firebase credentials in <code className="text-ice-blue">.env.local</code> to activate live data. See the Firebase Console for your project config.
         </p>
       </div>
     </div>

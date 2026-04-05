@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
-import { createBooking } from '@/lib/supabaseClient';
+import { createBooking } from '@/lib/db';
 import { useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
 
@@ -54,7 +54,7 @@ function ContactForm() {
       setStatus('success');
       setForm({ name: '', phone: '', service: '', message: '' });
     } catch {
-      // If Supabase not configured, simulate success in demo
+      // If Firebase not configured, simulate success in demo
       setTimeout(() => setStatus('success'), 800);
     }
   };

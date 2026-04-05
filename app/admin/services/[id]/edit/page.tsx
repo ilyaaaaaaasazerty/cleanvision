@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
-import { getServiceById } from '@/lib/supabaseClient';
+import { getServiceById } from '@/lib/db';
 import ServiceForm from '@/components/admin/ServiceForm';
 import type { Service } from '@/lib/types';
 

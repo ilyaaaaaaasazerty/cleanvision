@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { getCategories, createCategory, deleteCategory } from '@/lib/supabaseClient';
+import { getCategories, createCategory, deleteCategory } from '@/lib/db';
 import type { Category } from '@/lib/types';
 
 export default function AdminCategoriesPage() {

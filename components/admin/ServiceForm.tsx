@@ -8,7 +8,7 @@ import {
   updateService,
   getCategories,
   uploadServiceImage,
-} from '@/lib/supabaseClient';
+} from '@/lib/db';
 import type { Service, Category } from '@/lib/types';
 
 interface Props {

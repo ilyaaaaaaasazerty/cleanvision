@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { supabase } from '@/lib/supabaseClient';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '@/lib/firebase';
 import Link from 'next/link';
 
 export default function AdminLoginPage() {
@@ -17,13 +18,18 @@ export default function AdminLoginPage() {
     setLoading(true);
     setError('');
 
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
-
-    if (error) {
-      setError(error.message);
-      setLoading(false);
-    } else {
+    try {
+      if (!auth) {
+        setError('Firebase not configured. Add your Firebase credentials to .env.local');
+        setLoading(false);
+        return;
+      }
+      await signInWithEmailAndPassword(auth, email, password);
       router.push('/admin');
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Login failed';
+      setError(message);
+      setLoading(false);
     }
   };
 

@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getServices, deleteService } from '@/lib/supabaseClient';
+import { getServices, deleteService } from '@/lib/db';
 import type { Service } from '@/lib/types';
 
 export default function AdminServicesPage() {
@@ -32,7 +32,7 @@ export default function AdminServicesPage() {
       await deleteService(id);
       setServices((prev) => prev.filter((s) => s.id !== id));
     } catch (e) {
-      alert('Delete failed — check Supabase connection.');
+      alert('Delete failed — check Firebase connection.');
     } finally {
       setDeleting(null);
     }

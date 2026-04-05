@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { getBookings, supabase } from '@/lib/supabaseClient';
+import { getBookings, updateBookingStatus } from '@/lib/db';
 import type { Booking } from '@/lib/types';
 
 const STATUS_COLORS: Record<string, string> = {
@@ -22,16 +22,12 @@ export default function AdminBookingsPage() {
       .finally(() => setLoading(false));
   }, []);
 
-  const updateStatus = async (id: string, status: Booking['status']) => {
+  const handleUpdateStatus = async (id: string, status: Booking['status']) => {
     try {
-      const { error } = await supabase
-        .from('bookings')
-        .update({ status })
-        .eq('id', id);
-      if (error) throw error;
+      await updateBookingStatus(id, status);
       setBookings((prev) => prev.map((b) => (b.id === id ? { ...b, status } : b)));
     } catch {
-      alert('Update failed — check Supabase connection.');
+      alert('Update failed — check Firebase connection.');
     }
   };
 
@@ -124,7 +120,7 @@ export default function AdminBookingsPage() {
                 {(['pending', 'confirmed', 'completed'] as Booking['status'][]).map((s) => (
                   <button
                     key={s}
-                    onClick={() => updateStatus(booking.id, s)}
+                    onClick={() => handleUpdateStatus(booking.id, s)}
                     disabled={booking.status === s}
                     className={`px-3 py-1 font-mono text-[10px] tracking-wider uppercase border transition-all duration-200 disabled:opacity-30 disabled:cursor-default ${
                       booking.status === s

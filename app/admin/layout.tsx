@@ -3,7 +3,8 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { supabase } from '@/lib/supabaseClient';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { auth, isConfigured } from '@/lib/firebase';
 
 const NAV = [
   {
@@ -49,20 +50,25 @@ const NAV = [
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
-  const [user, setUser] = useState<{ email?: string } | null>(null);
+  const [user, setUser] = useState<{ email?: string | null } | null>(null);
   const [loading, setLoading] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (!session) {
-        // Allow demo mode — don't redirect
+    if (!auth || !isConfigured) {
+      setUser({ email: 'demo@cleanvision.dz' });
+      setLoading(false);
+      return;
+    }
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      if (!firebaseUser) {
         setUser({ email: 'demo@cleanvision.dz' });
       } else {
-        setUser(session.user);
+        setUser({ email: firebaseUser.email });
       }
       setLoading(false);
     });
+    return () => unsubscribe();
   }, [router]);
 
   if (loading) {
@@ -128,7 +134,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </div>
           <button
             onClick={async () => {
-              await supabase.auth.signOut();
+              if (auth) await signOut(auth);
               router.push('/admin/login');
             }}
             className="w-full text-left font-mono text-xs text-alabaster/25 hover:text-red-400 transition-colors uppercase tracking-wider"
