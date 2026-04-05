@@ -14,6 +14,15 @@ const firebaseConfig = {
 
 const isConfigured = Boolean(firebaseConfig.apiKey && firebaseConfig.projectId);
 
+if (!isConfigured && typeof window !== 'undefined') {
+  const missing = [];
+  if (!firebaseConfig.apiKey) missing.push('API_KEY');
+  if (!firebaseConfig.projectId) missing.push('PROJECT_ID');
+  if (missing.length > 0) {
+    console.warn(`[Firebase] Missing configuration: ${missing.join(', ')}. Check your .env.local or Vercel settings.`);
+  }
+}
+
 // Only initialize Firebase when credentials are actually present
 let app: FirebaseApp | null = null;
 let db: Firestore | null = null;

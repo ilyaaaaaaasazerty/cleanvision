@@ -2,25 +2,16 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
-import { createBooking } from '@/lib/db';
+import { createBooking, getServices } from '@/lib/db';
 import { useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
-
-const SERVICES_LIST = [
-  'Residential Deep Clean',
-  'Commercial Spaces',
-  'Post-Construction',
-  'Window & Glass',
-  'Move In / Move Out',
-  'Luxury Event Prep',
-  'Office Daily Maintenance',
-  'Carpet & Upholstery',
-];
+import type { Service } from '@/lib/types';
 
 function ContactForm() {
   const searchParams = useSearchParams();
   const prefillService = searchParams.get('service') ?? '';
 
+  const [services, setServices] = useState<string[]>([]);
   const [form, setForm] = useState({
     name: '',
     phone: '',
@@ -42,6 +33,14 @@ function ContactForm() {
       { x: 30, opacity: 0 },
       { x: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 0.4 }
     );
+
+    // Fetch services for dropdown
+    getServices()
+      .then((data) => {
+        const names = (data as Service[]).map(s => s.title);
+        setServices(names);
+      })
+      .catch(() => setServices([]));
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -86,7 +85,7 @@ function ContactForm() {
             <div className="reveal space-y-6 mb-12">
               {[
                 { icon: '📞', label: 'Phone', value: '+213 555 000 000', href: 'tel:+213555000000' },
-                { icon: '📧', label: 'Email', value: 'info@cleanvision.dz', href: 'mailto:info@cleanvision.dz' },
+                { icon: '📧', label: 'Email', value: 'info@amin-crystalclean.dz', href: 'mailto:info@amin-crystalclean.dz' },
                 { icon: '📍', label: 'Coverage', value: 'Algiers & Greater Region', href: '#' },
               ].map((item) => (
                 <a
@@ -176,8 +175,10 @@ function ContactForm() {
                   className={`${inputClass} cursor-pointer`}
                   style={{ appearance: 'none' }}
                 >
-                  <option value="" style={{ background: '#080808' }}>Select a service...</option>
-                  {SERVICES_LIST.map((s) => (
+                  <option value="" style={{ background: '#080808' }}>
+                    {services.length ? 'Select a service...' : 'General Inquiry'}
+                  </option>
+                  {services.map((s) => (
                     <option key={s} value={s} style={{ background: '#080808' }}>{s}</option>
                   ))}
                 </select>

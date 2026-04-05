@@ -9,32 +9,14 @@ import type { Service, Category } from '@/lib/types';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const FALLBACK: Service[] = [
-  { id: '1', title: 'Residential Deep Clean', description: 'Every corner, every surface — transformed. Our deep clean protocol leaves your home immaculate from ceiling to floor.', image_url: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80', price: 120, featured: true, category_id: '1', created_at: '', category: { id: '1', name: 'Residential', created_at: '' } },
-  { id: '2', title: 'Commercial Spaces', description: 'Professional environments demand professional standards. We deliver both with systematic precision.', image_url: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80', price: 280, featured: true, category_id: '2', created_at: '', category: { id: '2', name: 'Commercial', created_at: '' } },
-  { id: '3', title: 'Post-Construction', description: 'Debris, dust, and residue eliminated. Your new space, perfectly presented for handover.', image_url: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80', price: 350, featured: false, category_id: '3', created_at: '', category: { id: '3', name: 'Specialty', created_at: '' } },
-  { id: '4', title: 'Window & Glass', description: 'Crystal clarity restored. Interior and exterior glass surfaces treated to perfection.', image_url: 'https://images.unsplash.com/photo-1521335629791-ce4aec67dd15?w=800&q=80', price: 90, featured: false, category_id: '1', created_at: '', category: { id: '1', name: 'Residential', created_at: '' } },
-  { id: '5', title: 'Move In / Move Out', description: 'Starting fresh or leaving a legacy — both deserve a flawless clean that passes inspection.', image_url: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80', price: 200, featured: true, category_id: '1', created_at: '', category: { id: '1', name: 'Residential', created_at: '' } },
-  { id: '6', title: 'Luxury Event Prep', description: 'Your event deserves a pristine backdrop. We prepare spaces for moments that matter and memories that last.', image_url: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800&q=80', price: 450, featured: true, category_id: '4', created_at: '', category: { id: '4', name: 'Premium', created_at: '' } },
-  { id: '7', title: 'Office Daily Maintenance', description: 'Consistent daily upkeep keeps your workspace immaculate and your team productive.', image_url: 'https://images.unsplash.com/photo-1497366412874-3415097a27e7?w=800&q=80', price: 80, featured: false, category_id: '2', created_at: '', category: { id: '2', name: 'Commercial', created_at: '' } },
-  { id: '8', title: 'Carpet & Upholstery', description: 'Deep extraction cleaning restores fibers to their original condition. Stains removed, allergens eliminated.', image_url: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=80', price: 150, featured: false, category_id: '3', created_at: '', category: { id: '3', name: 'Specialty', created_at: '' } },
-];
-
-const FALLBACK_CATS: Category[] = [
-  { id: '1', name: 'Residential', created_at: '' },
-  { id: '2', name: 'Commercial', created_at: '' },
-  { id: '3', name: 'Specialty', created_at: '' },
-  { id: '4', name: 'Premium', created_at: '' },
-];
-
 interface Props {
   services: Service[];
   categories: Category[];
 }
 
 export default function ServicesPageClient({ services, categories }: Props) {
-  const displayServices = services.length ? services : FALLBACK;
-  const displayCats = categories.length ? categories : FALLBACK_CATS;
+  const displayServices = services;
+  const displayCats = categories;
 
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const gridRef = useRef<HTMLDivElement>(null);

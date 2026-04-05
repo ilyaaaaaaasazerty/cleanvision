@@ -45,7 +45,7 @@ export default function AdminDashboard() {
     <div>
       <div className="mb-8">
         <h1 className="font-display text-3xl font-light text-alabaster mb-1">Dashboard</h1>
-        <p className="font-mono text-xs text-alabaster/30 tracking-wider">Overview of your CleanVision CMS</p>
+        <p className="font-mono text-xs text-alabaster/30 tracking-wider">Overview of your Amin Crystal Clean CMS</p>
       </div>
 
       {/* Stats */}

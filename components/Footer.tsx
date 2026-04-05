@@ -18,7 +18,7 @@ export default function Footer() {
     ],
     Contact: [
       { label: '+213 555 000 000', href: 'tel:+213555000000' },
-      { label: 'info@cleanvision.dz', href: 'mailto:info@cleanvision.dz' },
+      { label: 'info@amin-crystalclean.dz', href: 'mailto:info@amin-crystalclean.dz' },
       { label: 'Algiers, Algeria', href: '#' },
     ],
   };
@@ -29,15 +29,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <Link href="/" className="inline-flex items-center gap-3 mb-6">
-              <div className="w-7 h-7 relative">
-                <div className="absolute inset-0 bg-deep-teal rounded-full opacity-60" />
-                <div className="absolute inset-1 bg-ice-blue rounded-full opacity-40" />
-                <div className="absolute inset-2 bg-alabaster rounded-full" />
+            <Link href="/" className="inline-flex items-center gap-3 mb-6 font-display text-lg font-light tracking-[0.15em] text-alabaster uppercase">
+              <div className="relative w-8 h-8 overflow-hidden">
+                <img src="/logo.png" alt="Amin Crystal Clean Logo" className="object-contain w-full h-full" />
               </div>
-              <span className="font-display text-lg font-light tracking-[0.15em] text-alabaster">
-                CLEAN<span className="text-ice-blue">VISION</span>
-              </span>
+              <span>AMIN <span className="text-ice-blue">CRYSTAL CLEAN</span></span>
             </Link>
             <p className="font-body text-sm text-alabaster/40 leading-relaxed max-w-xs mb-8">
               Where spaces become art. Premium cleaning services for those who
@@ -81,7 +77,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="font-mono text-xs text-alabaster/25 tracking-wider">
-            © {year} CleanVision. All rights reserved.
+            © {year} Amin Crystal Clean. All rights reserved.
           </p>
           <div className="flex gap-6">
             {['Privacy', 'Terms', 'Cookies'].map((link) => (

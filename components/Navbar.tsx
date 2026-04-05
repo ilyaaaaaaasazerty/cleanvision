@@ -42,13 +42,11 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="group flex items-center gap-3">
-            <div className="w-8 h-8 relative">
-              <div className="absolute inset-0 bg-deep-teal rounded-full opacity-60 group-hover:scale-110 transition-transform duration-300" />
-              <div className="absolute inset-1 bg-ice-blue rounded-full opacity-40" />
-              <div className="absolute inset-2 bg-alabaster rounded-full" />
+            <div className="relative w-10 h-10 overflow-hidden">
+              <img src="/logo.png" alt="Amin Crystal Clean Logo" className="object-contain w-full h-full" />
             </div>
-            <span className="font-display text-xl font-light tracking-[0.15em] text-alabaster">
-              CLEAN<span className="text-ice-blue">VISION</span>
+            <span className="font-display text-xl font-light tracking-[0.15em] text-alabaster uppercase">
+              AMIN <span className="text-ice-blue">CRYSTAL CLEAN</span>
             </span>
           </Link>
 

@@ -56,13 +56,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   useEffect(() => {
     if (!auth || !isConfigured) {
-      setUser({ email: 'demo@cleanvision.dz' });
+      setUser({ email: 'admin@amin-clean.dz' });
       setLoading(false);
       return;
     }
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
       if (!firebaseUser) {
-        setUser({ email: 'demo@cleanvision.dz' });
+        setUser({ email: 'admin@amin-clean.dz' });
       } else {
         setUser({ email: firebaseUser.email });
       }
@@ -90,16 +90,14 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         {/* Logo */}
         <div className="p-6 border-b border-white/5">
           <Link href="/" className="flex items-center gap-2.5">
-            <div className="w-6 h-6 relative">
-              <div className="absolute inset-0 bg-deep-teal rounded-full opacity-60" />
-              <div className="absolute inset-1 bg-ice-blue rounded-full opacity-40" />
-              <div className="absolute inset-2 bg-alabaster rounded-full" />
+            <div className="relative w-8 h-8 rounded-full overflow-hidden">
+              <img src="/logo.png" alt="Logo" className="object-cover w-full h-full" />
             </div>
             <span className="font-display text-sm font-light tracking-[0.15em] text-alabaster">
-              CLEAN<span className="text-ice-blue">VISION</span>
+              AMIN<span className="text-ice-blue"> CRYSTAL CLEAN</span>
             </span>
           </Link>
-          <p className="font-mono text-[10px] text-alabaster/25 tracking-wider mt-1 uppercase">Admin Panel</p>
+          <p className="font-mono text-xs text-alabaster/30 tracking-wider">Overview of your Amin Crystal Clean CMS</p>
         </div>
 
         {/* Nav */}

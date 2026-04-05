@@ -20,7 +20,7 @@ const TESTIMONIALS = [
     role: 'Interior Designer',
     rating: 5,
     content:
-      'CleanVision transformed my showroom before our biggest client presentation. The level of detail — the clarity on every glass surface — was beyond anything I had experienced.',
+      'Amin Crystal Clean transformed my showroom before our biggest client presentation. The level of detail — the clarity on every glass surface — was beyond anything I had experienced.',
   },
   {
     id: 2,
@@ -28,7 +28,7 @@ const TESTIMONIALS = [
     role: 'Property Manager',
     rating: 5,
     content:
-      'We manage 12 luxury buildings. CleanVision is the only team we trust for our premium units. Their consistency and professionalism is unmatched in the market.',
+      'We manage 12 luxury buildings. Amin Crystal Clean is the only team we trust for our premium units. Their consistency and professionalism is unmatched in the market.',
   },
   {
     id: 3,

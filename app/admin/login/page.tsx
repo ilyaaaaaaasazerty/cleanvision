@@ -38,15 +38,11 @@ export default function AdminLoginPage() {
       <div className="w-full max-w-sm">
         {/* Logo */}
         <div className="text-center mb-12">
-          <Link href="/" className="inline-flex items-center gap-3 mb-8">
-            <div className="w-8 h-8 relative">
-              <div className="absolute inset-0 bg-deep-teal rounded-full opacity-60" />
-              <div className="absolute inset-1 bg-ice-blue rounded-full opacity-40" />
-              <div className="absolute inset-2 bg-alabaster rounded-full" />
+          <Link href="/" className="inline-flex items-center gap-3 mb-8 font-display text-xl font-light tracking-[0.15em] text-alabaster uppercase">
+            <div className="relative w-10 h-10 overflow-hidden">
+              <img src="/logo.png" alt="Logo" className="object-contain w-full h-full" />
             </div>
-            <span className="font-display text-xl font-light tracking-[0.15em] text-alabaster">
-              CLEAN<span className="text-ice-blue">VISION</span>
-            </span>
+            <span>AMIN<span className="text-ice-blue"> CRYSTAL CLEAN</span></span>
           </Link>
           <p className="font-mono text-xs tracking-[0.3em] text-alabaster/30 uppercase">Admin Access</p>
         </div>
@@ -62,7 +58,7 @@ export default function AdminLoginPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full bg-white/[0.03] border border-white/10 text-alabaster text-sm px-4 py-3 placeholder-alabaster/25 focus:outline-none focus:border-ice-blue/40 font-body"
-              placeholder="admin@cleanvision.dz"
+              placeholder="admin@amin-clean.dz"
             />
           </div>
 

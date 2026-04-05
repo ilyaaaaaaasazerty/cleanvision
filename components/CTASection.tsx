@@ -113,7 +113,7 @@ export default function CTASection() {
           {/* Subline */}
           <p className="cta-sub font-body text-lg text-alabaster/40 max-w-lg mx-auto leading-relaxed mb-14">
             One appointment is all it takes to understand why discerning clients
-            trust CleanVision with their most valued spaces.
+            trust Amin Crystal Clean with their most valued spaces.
           </p>
 
           {/* Buttons */}
@@ -126,7 +126,7 @@ export default function CTASection() {
             </Link>
 
             <a
-              href={`https://wa.me/213555000000?text=${encodeURIComponent('Hello! I\'d like to learn more about CleanVision services.')}`}
+              href={`https://wa.me/213555000000?text=${encodeURIComponent('Hello! I\'d like to learn more about Amin Crystal Clean services.')}`}
               target="_blank"
               rel="noopener noreferrer"
               className="group px-10 py-5 border border-white/15 text-alabaster/70 font-body text-sm tracking-widest uppercase hover:border-ice-blue/40 hover:text-ice-blue transition-all duration-300 flex items-center gap-3 justify-center"

@@ -32,8 +32,8 @@ export default function AdminCategoriesPage() {
       const cat = await createCategory(newName.trim());
       setCategories((prev) => [...prev, cat as Category]);
       setNewName('');
-    } catch {
-      alert('Failed to create category.');
+    } catch (err: any) {
+      alert(`Failed to create category: ${err?.message || 'Unknown error'}`);
     } finally {
       setAdding(false);
     }

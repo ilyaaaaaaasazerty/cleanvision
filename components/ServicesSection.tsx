@@ -9,75 +9,6 @@ import type { Service } from '@/lib/types';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const FALLBACK_SERVICES = [
-  {
-    id: '1',
-    title: 'Residential Deep Clean',
-    description: 'Every corner, every surface — transformed. Our deep clean protocol leaves your home immaculate.',
-    image_url: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
-    price: 120,
-    featured: true,
-    category_id: null,
-    created_at: '',
-    category: { id: '1', name: 'Residential', created_at: '' },
-  },
-  {
-    id: '2',
-    title: 'Commercial Spaces',
-    description: 'Professional environments demand professional standards. We deliver both.',
-    image_url: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80',
-    price: 280,
-    featured: true,
-    category_id: null,
-    created_at: '',
-    category: { id: '2', name: 'Commercial', created_at: '' },
-  },
-  {
-    id: '3',
-    title: 'Post-Construction',
-    description: 'Debris, dust, and residue eliminated. Your new space, perfectly presented.',
-    image_url: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80',
-    price: 350,
-    featured: true,
-    category_id: null,
-    created_at: '',
-    category: { id: '3', name: 'Specialty', created_at: '' },
-  },
-  {
-    id: '4',
-    title: 'Window & Glass',
-    description: 'Crystal clarity restored. Interior and exterior glass treated to perfection.',
-    image_url: 'https://images.unsplash.com/photo-1521335629791-ce4aec67dd15?w=600&q=80',
-    price: 90,
-    featured: true,
-    category_id: null,
-    created_at: '',
-    category: { id: '1', name: 'Residential', created_at: '' },
-  },
-  {
-    id: '5',
-    title: 'Move In / Move Out',
-    description: 'Starting fresh or leaving a legacy — both deserve a flawless clean.',
-    image_url: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80',
-    price: 200,
-    featured: true,
-    category_id: null,
-    created_at: '',
-    category: { id: '1', name: 'Residential', created_at: '' },
-  },
-  {
-    id: '6',
-    title: 'Luxury Event Prep',
-    description: 'Your event deserves a pristine backdrop. We prepare spaces for moments that matter.',
-    image_url: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=600&q=80',
-    price: 450,
-    featured: true,
-    category_id: null,
-    created_at: '',
-    category: { id: '4', name: 'Premium', created_at: '' },
-  },
-];
-
 interface ServicesSectionProps {
   services?: Service[];
 }
@@ -87,7 +18,7 @@ export default function ServicesSection({ services }: ServicesSectionProps) {
   const headingRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
-  const displayServices = services?.length ? services : FALLBACK_SERVICES;
+  const displayServices = services || [];
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -130,7 +61,16 @@ export default function ServicesSection({ services }: ServicesSectionProps) {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [displayServices.length]);
+
+  if (displayServices.length === 0) {
+    return (
+      <section className="py-20 px-6 bg-obsidian text-center">
+        <p className="font-display text-2xl text-alabaster/20 italic">No services curated yet.</p>
+        <p className="font-mono text-[10px] text-alabaster/10 mt-2 uppercase tracking-widest">Check back soon</p>
+      </section>
+    );
+  }
 
   return (
     <section ref={sectionRef} className="py-32 px-6 bg-obsidian relative overflow-hidden">
@@ -159,7 +99,7 @@ export default function ServicesSection({ services }: ServicesSectionProps) {
           ref={gridRef}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          {displayServices.slice(0, 6).map((service, i) => (
+          {displayServices.slice(0, 6).map((service: Service, i: number) => (
             <ServiceCard key={service.id} service={service} index={i} />
           ))}
         </div>
@@ -179,7 +119,7 @@ export default function ServicesSection({ services }: ServicesSectionProps) {
   );
 }
 
-function ServiceCard({ service, index }: { service: Service | typeof FALLBACK_SERVICES[0]; index: number }) {
+function ServiceCard({ service, index }: { service: Service; index: number }) {
   const cardRef = useRef<HTMLDivElement>(null);
 
   return (

@@ -4,13 +4,13 @@ import WhatsAppButton from '@/components/WhatsAppButton';
 import Navbar from '@/components/Navbar';
 
 export const metadata: Metadata = {
-  title: 'CleanVision — Luxury Cleaning Services',
+  title: 'Amin Crystal Clean — Luxury Cleaning Services',
   description:
-    'Experience immaculate spaces crafted with precision. Premium residential and commercial cleaning services tailored for those who demand perfection.',
+    'The pinnacle of professional cleaning in Algiers. Bespoke solutions for residential and commercial spaces.',
   keywords: ['luxury cleaning', 'professional cleaning', 'premium cleaning service'],
   openGraph: {
-    title: 'CleanVision — Where Spaces Become Art',
-    description: 'Luxury cleaning services that transform your environment.',
+    title: 'Amin Crystal Clean — Where Spaces Become Art',
+    description: 'Breathtaking clarity. Absolute precision.',
     type: 'website',
   },
 };
